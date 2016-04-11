@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="peerApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Assignments</title>
+    <script src="angular.min.js"></script>
+    <script src="client.js"></script>
+  </head>
+  <body ng-controller="AssignmentController">
+    <h1>Input Assignments</h1>
+    <form>
+      <input type="number" ng-model="assignment.assignmentNumber" placeholder="Assignment number"/>
+      <input type="text" ng-model="assignment.studentName" placeholder="Student name"/>
+      <input type="number" ng-model="assignment.score" placeholder="Score"/>
+      <input type="date" ng-model="assignment.dateCompleted" placeholder="Date completed"/>
+      <input type="submit" ng-click="submitAssignment()" />
+      {{assignment}}
+    </form>
+
+    <div class="assignments" ng-repeat="assignment in assignments track by $index">
+      {{assignment}}
+    </div>
+  </body>
+</html>
