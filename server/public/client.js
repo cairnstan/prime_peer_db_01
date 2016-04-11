@@ -4,6 +4,9 @@ app.controller('AssignmentController', function($scope, $http, $interval){
   $scope.assignment = {};
   $scope.assignments = [];
 
+  $scope.selected = {};
+  $scope.newAssignment = {};
+
 
 
   $scope.submitAssignment = function(){
@@ -20,6 +23,22 @@ app.controller('AssignmentController', function($scope, $http, $interval){
       console.log('client.js response', response);
       $scope.assignments = response.data;
 
+    });
+  };
+
+  $scope.removeEntry = function(entry){
+    var entryID = entry._id;
+    $http.delete('/assignments/delete/' + entryID).then(function(response){
+        console.log('Assignment deleted?');
+        $scope.getAssignments();
+    });
+  };
+
+  $scope.editAssignment = function(){
+
+    $http.put('assignments/edit', $scope.newAssignment).then(function(response){
+      console.log('Assignment edited?', response);
+      $scope.getAssignments();
     });
   };
 

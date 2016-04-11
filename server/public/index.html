@@ -17,8 +17,23 @@
       {{assignment}}
     </form>
 
+
     <div class="assignments" ng-repeat="assignment in assignments track by $index">
       {{assignment}}
+      <button ng-click="removeEntry(assignment)">Remove Entry</button>
+      <button ng-click="showEditFields()">Edit Entry</button>
+      <div>
+        <h1>Edit Assignments</h1>
+        <form>
+          <input type="number" ng-model="newAssignment.assignmentNumber" value="selected.assignmentNumber" placeholder="Assignment number"/>
+          <input type="text" ng-model="newAssignment.studentName" placeholder="Student name"/>
+          <input type="number" ng-model="newAssignment.score" placeholder="Score"/>
+          <input type="date" ng-model="newAssignment.dateCompleted" placeholder="Date completed"/>
+          <input type="submit" ng-click="editAssignment()" />
+        </form>
+      </div>
+
     </div>
+    {{selected}}
   </body>
 </html>

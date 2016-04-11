@@ -26,16 +26,29 @@ router.get('/:id', function(request, response){
         response.send(assignment);
       }
     });
-  } else {
-    Assignment.find({}, function(err, assignments){
-      if (err){
-        console.log(err);
-      } else {
-        // console.log('Assignment got', assignments);
-        response.send(assignments);
-      }
-    });
   }
+});
+
+router.get('/', function(request, response){
+  // response.send('assignments now working');
+  Assignment.find({}, function(err, assignments){
+    if (err){
+      console.log(err);
+    } else {
+      // console.log('Assignment got', assignments);
+      response.send(assignments);
+    }
+  });
+});
+
+router.delete('/delete/:id', function(request, response){
+  console.log('Delete object', request.params.id);
+  Assignment.findOneAndRemove({_id: request.params.id}, function(err){
+    if (err){
+      console.log('delete error', err);
+    }
+  });
+  response.sendStatus(200);
 });
 
 module.exports = router;
