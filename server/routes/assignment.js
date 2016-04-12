@@ -51,4 +51,8 @@ router.delete('/delete/:id', function(request, response){
   response.sendStatus(200);
 });
 
+router.put('/edit', function(request, response){
+  Assignment.findOneAndUpdate({_id: response.body._id});
+});
+
 module.exports = router;
